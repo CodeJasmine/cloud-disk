@@ -14,17 +14,17 @@
 				</view>
 			</template>
 		</nav-bar>
-		<view class="bg-info" style="height: 1000px;">
-			123
-		</view>
+		<uni-search-bar></uni-search-bar>
 	</view>
 </template>
 
 <script>
 	import navBar from '@/components/common/nav-bar.vue'
+	import uniSearchBar from '@/components/uni-ui/uni-search-bar/uni-search-bar.vue'
 	export default {
 		components:{
-			navBar
+			navBar,
+			uniSearchBar
 		},
 		data() {
 			return {
