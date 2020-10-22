@@ -24,27 +24,39 @@
 			</view>
 			<input type="text" style="height: 70rpx; padding-left: 70rpx;" class="bg-light font-md rounded-circle" placeholder="搜索网盘文件" />
 		</view>
+		<f-list v-for="(item,index) in list" :key="index" :item="item" :index="index" @select="select"></f-list>
 	</view>
 </template>
 
 <script>
 	import navBar from '@/components/common/nav-bar.vue'
 	import uniSearchBar from '@/components/uni-ui/uni-search-bar/uni-search-bar.vue'
+	import fList from '@/components/common/f-list.vue'
 	export default {
 		components:{
 			navBar,
-			uniSearchBar
+			uniSearchBar,
+			fList
 		},
 		data() {
 			return {
-				
+				list:res.data
 			}
 		},
 		onLoad() {
-
+			uni.request({
+				url:'http://localhost:7001/list',
+				method:'GET',
+				success:res=>{
+					console.log(res.data);
+				}
+			})
 		},
 		methods: {
-
+			select(e){
+							//接收到子组件传递过来的索引选中状态，将对应的list中的数据更新
+							this.list[e.index].checked = e.value
+						}
 		}
 	}
 </script>
