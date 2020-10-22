@@ -58,6 +58,11 @@ module.exports = (appInfo) => {
     },
   }
 
+  config.valparams = {
+    locale: 'zh-cn',
+    throwError: true,
+  }
+
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
