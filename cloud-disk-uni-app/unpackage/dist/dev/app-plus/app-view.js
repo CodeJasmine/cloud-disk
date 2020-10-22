@@ -228,106 +228,158 @@ var render = function() {
         "nav-bar",
         { attrs: { _i: 1 } },
         [
-          _c(
-            "v-uni-text",
-            {
-              staticClass: _vm._$g(2, "sc"),
-              attrs: { slot: "left", _i: 2 },
-              slot: "left"
-            },
-            [_vm._v("首页")]
-          ),
-          _c(
-            "template",
-            { attrs: { _i: 3 }, slot: "right" },
-            [
-              _c(
-                "v-uni-view",
-                {
-                  staticClass: _vm._$g(4, "sc"),
-                  staticStyle: { width: "60rpx", height: "60rpx" },
-                  attrs: { _i: 4 }
-                },
-                [
-                  _c("v-uni-text", {
-                    staticClass: _vm._$g(5, "sc"),
-                    attrs: { _i: 5 }
-                  })
-                ],
-                1
-              ),
-              _c(
-                "v-uni-view",
-                {
-                  staticClass: _vm._$g(6, "sc"),
-                  staticStyle: { width: "60rpx", height: "60rpx" },
-                  attrs: { _i: 6 }
-                },
-                [
-                  _c("v-uni-text", {
-                    staticClass: _vm._$g(7, "sc"),
-                    attrs: { _i: 7 }
-                  })
-                ],
-                1
-              )
-            ],
-            1
-          )
+          _vm._$g(2, "i")
+            ? [
+                _c(
+                  "v-uni-text",
+                  {
+                    staticClass: _vm._$g(3, "sc"),
+                    attrs: { slot: "left", _i: 3 },
+                    slot: "left"
+                  },
+                  [_vm._v("首页")]
+                ),
+                _c(
+                  "template",
+                  { attrs: { _i: 4 }, slot: "right" },
+                  [
+                    _c(
+                      "v-uni-view",
+                      {
+                        staticClass: _vm._$g(5, "sc"),
+                        staticStyle: { width: "60rpx", height: "60rpx" },
+                        attrs: { _i: 5 }
+                      },
+                      [
+                        _c("v-uni-text", {
+                          staticClass: _vm._$g(6, "sc"),
+                          attrs: { _i: 6 }
+                        })
+                      ],
+                      1
+                    ),
+                    _c(
+                      "v-uni-view",
+                      {
+                        staticClass: _vm._$g(7, "sc"),
+                        staticStyle: { width: "60rpx", height: "60rpx" },
+                        attrs: { _i: 7 }
+                      },
+                      [
+                        _c("v-uni-text", {
+                          staticClass: _vm._$g(8, "sc"),
+                          attrs: { _i: 8 }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
+            : [
+                _c(
+                  "v-uni-view",
+                  {
+                    staticClass: _vm._$g(10, "sc"),
+                    attrs: { slot: "left", _i: 10 },
+                    on: {
+                      click: function($event) {
+                        return _vm.$handleViewEvent($event)
+                      }
+                    },
+                    slot: "left"
+                  },
+                  [_vm._v("取消")]
+                ),
+                _c(
+                  "v-uni-text",
+                  { staticClass: _vm._$g(11, "sc"), attrs: { _i: 11 } },
+                  [_vm._v("已选中" + _vm._$g(11, "t0-0") + "个")]
+                ),
+                _c(
+                  "v-uni-view",
+                  {
+                    staticClass: _vm._$g(12, "sc"),
+                    attrs: { slot: "right", _i: 12 },
+                    on: {
+                      click: function($event) {
+                        return _vm.$handleViewEvent($event)
+                      }
+                    },
+                    slot: "right"
+                  },
+                  [_vm._v("全选")]
+                )
+              ]
         ],
         2
       ),
-      _c(
-        "v-uni-view",
-        { staticClass: _vm._$g(8, "sc"), attrs: { _i: 8 } },
-        [
-          _c(
-            "v-uni-view",
-            { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
-            [
-              _c(
-                "v-uni-view",
-                {
-                  staticClass: _vm._$g(10, "sc"),
-                  staticStyle: {
-                    height: "70rpx",
-                    width: "70rpx",
-                    position: "absolute",
-                    top: "0",
-                    left: "0"
-                  },
-                  attrs: { _i: 10 }
-                },
-                [
-                  _c("v-uni-text", {
-                    staticClass: _vm._$g(11, "sc"),
-                    attrs: { _i: 11 }
-                  })
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _c("v-uni-input", {
-            staticClass: _vm._$g(12, "sc"),
-            staticStyle: { height: "70rpx", "padding-left": "70rpx" },
-            attrs: { type: "text", placeholder: "搜索网盘文件", _i: 12 }
-          })
-        ],
-        1
-      ),
-      _vm._l(_vm._$g(13, "f"), function(item, index, $20, $30) {
+      _c("uni-search-bar", { attrs: { _i: 13 } }),
+      _vm._l(_vm._$g(14, "f"), function(item, index, $20, $30) {
         return _c("f-list", {
           key: item,
-          attrs: { _i: "13-" + $30 },
+          attrs: { _i: "14-" + $30 },
           on: {
             select: function($event) {
               return _vm.$handleViewEvent($event)
             }
           }
         })
-      })
+      }),
+      _vm._$g(15, "i")
+        ? _c(
+            "v-uni-view",
+            { attrs: { _i: 15 } },
+            [
+              _c("v-uni-view", {
+                staticStyle: { height: "115rpx" },
+                attrs: { _i: 16 }
+              }),
+              _c(
+                "v-uni-view",
+                {
+                  staticClass: _vm._$g(17, "sc"),
+                  staticStyle: { height: "115rpx" },
+                  attrs: { _i: 17 }
+                },
+                _vm._l(_vm._$g(18, "f"), function(item, index, $21, $31) {
+                  return _c(
+                    "v-uni-view",
+                    {
+                      key: item,
+                      staticClass: _vm._$g("18-" + $31, "sc"),
+                      staticStyle: { "line-height": "1.5" },
+                      attrs: {
+                        "hover-class": "bg-hover-primary",
+                        _i: "18-" + $31
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.$handleViewEvent($event)
+                        }
+                      }
+                    },
+                    [
+                      _c("v-uni-text", {
+                        staticClass: _vm._$g("19-" + $31, "sc"),
+                        class: _vm._$g("19-" + $31, "c"),
+                        attrs: { _i: "19-" + $31 }
+                      }),
+                      _vm._v(_vm._$g("18-" + $31, "t1-0"))
+                    ],
+                    1
+                  )
+                }),
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _c("f-dialog", { ref: "dialog", attrs: { _i: 20 } }, [
+        _vm._v("是否删除选中的文件?")
+      ])
     ],
     2
   )
