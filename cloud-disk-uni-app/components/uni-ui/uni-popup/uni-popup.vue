@@ -11,7 +11,6 @@
 
 <script>
 	import uniTransition from '../uni-transition/uni-transition.vue'
-
 	/**
 	 * PopUp 弹出层
 	 * @description 弹出层组件，为了解决遮罩弹层的问题
@@ -24,7 +23,6 @@
 	 * @property {Boolean} maskClick = [ture|false] 蒙版点击是否关闭弹窗
 	 * @event {Function} change 打开关闭弹窗触发，e={show: false}
 	 */
-
 	export default {
 		name: 'UniPopup',
 		components: {
@@ -104,7 +102,6 @@
 								'justifyContent': 'center',
 								'alignItems': 'center'
 							}
-
 							break
 					}
 				},
@@ -170,7 +167,6 @@
 		z-index: 9999;
 		/* #endif */
 	}
-
 	.uni-popup__mask {
 		position: absolute;
 		top: 0;
@@ -180,45 +176,37 @@
 		background-color: rgba(0, 0, 0, 0.4);
 		opacity: 0;
 	}
-
 	.mask-ani {
 		transition-property: opacity;
 		transition-duration: 0.2s;
 	}
-
 	.uni-top-mask {
 		opacity: 1;
 	}
-
 	.uni-bottom-mask {
 		opacity: 1;
 	}
-
 	.uni-center-mask {
 		opacity: 1;
 	}
-
 	.uni-popup__wrapper {
 		/* #ifndef APP-NVUE */
 		display: block;
 		/* #endif */
 		position: absolute;
 	}
-
 	.top {
 		top: 0;
 		left: 0;
 		right: 0;
 		transform: translateY(-500px);
 	}
-
 	.bottom {
 		bottom: 0;
 		left: 0;
 		right: 0;
 		transform: translateY(500px);
 	}
-
 	.center {
 		/* #ifndef APP-NVUE */
 		display: flex;
@@ -233,30 +221,24 @@
 		transform: scale(1.2);
 		opacity: 0;
 	}
-
 	.uni-popup__wrapper-box {
 		/* #ifndef APP-NVUE */
 		display: block;
 		/* #endif */
 		position: relative;
 	}
-
 	.content-ani {
 		/* transition: transform 0.3s;
  */
 		transition-property: transform, opacity;
 		transition-duration: 0.2s;
 	}
-
-
 	.uni-top-content {
 		transform: translateY(0);
 	}
-
 	.uni-bottom-content {
 		transform: translateY(0);
 	}
-
 	.uni-center-content {
 		transform: scale(1);
 		opacity: 1;
