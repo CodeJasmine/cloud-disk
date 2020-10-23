@@ -27,7 +27,7 @@
 
 <script>
 	import uniPopup from '@/components/uni-ui/uni-popup/uni-popup.vue'
-	export default:{
+	export default{
 		components:{
 			uniPopup
 		},
