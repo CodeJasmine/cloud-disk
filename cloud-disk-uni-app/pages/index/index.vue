@@ -49,7 +49,7 @@
 		<f-list v-for="(item, index) in list" :key="index" 
 		:item="item" :index="index"
 		@click="doEvent(item)"
-		 @select="select"></f-list>
+		@select="select"></f-list>
 		
 		<!-- 底部操作条 -->
 		    <!-- 选中个数大于0才会出现这个操作条 -->

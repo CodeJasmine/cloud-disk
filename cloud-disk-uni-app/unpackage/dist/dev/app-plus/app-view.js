@@ -1540,7 +1540,15 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-uni-view",
-    { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
+    {
+      staticClass: _vm._$g(0, "sc"),
+      attrs: { _i: 0 },
+      on: {
+        click: function($event) {
+          return _vm.$handleViewEvent($event)
+        }
+      }
+    },
     [
       _c("v-uni-text", {
         staticClass: _vm._$g(1, "sc"),
@@ -1573,7 +1581,7 @@ var render = function() {
         "v-uni-view",
         {
           staticClass: _vm._$g(5, "sc"),
-          staticStyle: { width: "70rpx", height: "rpx" },
+          staticStyle: { width: "70rpx", height: "70rpx" },
           attrs: { _i: 5 },
           on: {
             click: function($event) {
@@ -1585,7 +1593,7 @@ var render = function() {
           _vm._$g(6, "i")
             ? _c("v-uni-text", {
                 staticClass: _vm._$g(6, "sc"),
-                staticStyle: { height: "40rpx", width: "40rpx" },
+                staticStyle: { height: "25rpx", width: "25rpx" },
                 attrs: { _i: 6 }
               })
             : _c("v-uni-text", {
