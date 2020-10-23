@@ -46,13 +46,13 @@
 	import navBar from '@/components/common/nav-bar.vue';
 	import uniSearchBar from '@/components/uni-ui/uni-search-bar/uni-search-bar.vue';
 	import fList from '@/components/common/f-list.vue';
-	// import fDialog from '@/components/common/f-dialog.vue';
+	import fDialog from '@/components/common/f-dialog.vue';
 	export default {
 		components: {
 			navBar,
 			uniSearchBar,
 			fList,
-			// fDialog
+			fDialog
 		},
 		data() {
 			return {
