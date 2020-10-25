@@ -10,7 +10,11 @@
 		}
 	    ,{
             "path" : "pages/my/my",
-            "style" : {}
+            "style" : {
+            	"app-plus":{
+            		"titleNView":false
+            	}
+            }
         }
         ,{
             "path": "pages/list/list",
@@ -32,7 +36,19 @@
         }
         ,{
             "path" : "pages/video/video",
-            "style" : {}
+            "style" : {
+            	"app-plus":{
+            		"titleNView":false
+            	}
+            }
+        }
+        ,{
+            "path" : "pages/login/login",
+            "style" : {
+				"app-plus":{
+					"titleNView":false
+				}
+			}
         }
     ],
 	"globalStyle": {
