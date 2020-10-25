@@ -1,22 +1,42 @@
 <template>
-	<view>
-		
-	</view>
+  <view>
+    <view class="p-3 flex align-center">
+      <image
+        src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=222251486,3350228821&fm=11&gp=0.jpg"
+        style="width: 120rpx;height: 120rpx;"
+        class="rounded-circle flex-shrink mr-3"
+      ></image>
+      <view class="flex-1 flex flex-column text-muted font">
+        <view class="flex align-end">
+          <text class="font-lg text-dark mr-2">吴苏苏</text>
+          男 安徽阜阳
+        </view>
+        <text class="text-ellipsis">学生</text>
+      </view>
+    </view>
+    <view class="bg-light" style="height: 20rpx;"></view>
+    <view class="p-3">
+      <progress class="mb-3" percent="40" active stroke-width="3" />
+      <view class="flex align-center justify-between font">
+        <text class="text-light-muted">总：9999GB</text>
+        <text class="text-warning">已用：80GB</text>
+      </view>
+    </view>
+    <view class="bg-light" style="height: 20rpx;"></view>
+    <view class="flex justify-between p-3">
+      <text class="text-muted font">设置</text>
+      <image src="../../static/tabbar/right.png" mode="" style="width:40rpx;height: 40rpx;"></image>
+    </view>
+  </view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				
-			}
-		},
-		methods: {
-			
-		}
-	}
+export default {
+  data() {
+    return {};
+  },
+  methods: {}
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
