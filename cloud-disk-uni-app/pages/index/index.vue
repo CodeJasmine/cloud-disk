@@ -15,6 +15,7 @@
 					<view
 						style="width: 60rpx;height: 60rpx;"
 						class="flex align-center justify-center bg-icon rounded-circle mr-3"
+						@click="openSortDialog"
 					>
 						<text class="iconfont icon-gengduo"></text>
 					</view>
@@ -49,7 +50,7 @@
 		<f-list v-for="(item, index) in list" :key="index" 
 		:item="item" :index="index"
 		@click="doEvent(item)"
-		@select="select"></f-list>
+		 @select="select"></f-list>
 		
 		<!-- 底部操作条 -->
 		    <!-- 选中个数大于0才会出现这个操作条 -->
@@ -120,6 +121,22 @@
 				</view>
 			</view>
 		</uni-popup>
+		
+		<!-- 排序对话框 -->
+		<uni-popup ref="sort" type="bottom">
+			<view class="bg-white">
+				<view
+					v-for="(item, index) in sortOptions"
+					:key="index"
+					:class="index === sortIndex ? 'text-main' : 'text-dark'"
+					hover-class="bg-light"
+					@click="changeSort(index)"
+					class="flex align-center justify-center py-3 font border-bottom border-light-secondary"
+				>
+					{{ item.name }}
+				</view>
+			</view>
+		</uni-popup>
 	</view>
 </template>
 
@@ -137,6 +154,16 @@ export default {
 	},
 	data() {
 		return {
+			// 文件排序弹框
+			sortIndex: 0,
+			sortOptions: [
+				{
+					name: '按名称排序'
+				},
+				{
+					name: '按时间排序'
+				}
+			],
 			renameValue: '',
 			newdirname: '',
 			list: [
@@ -148,31 +175,25 @@ export default {
 				},
 				{
 					type: 'image',
-					name: '风景.jpg',
-					data: 'https://wanghuanle.oss-cn-beijing.aliyuncs.com/avatar/a%20%2882%29.jpg',
+					name: '狗.jpg',
+					data: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603469593793&di=fb7568f38b1994828ae0b71adbcbcb39&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F18%2F56%2F14300000958002128488569856508.jpg',
 					create_time: '2020-10-21 08:00',
 					checked: false
 				},
 				{
 					type: 'image',
-					name: '壁纸.jpg',
-					data: 'https://wanghuanle.oss-cn-beijing.aliyuncs.com/avatar/a%20%2884%29.jpg',
+					name: '猫.jpg',
+					data: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603469630232&di=1b1d5cc4a24f0574aeebadd09a61ce30&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F30%2F29%2F01300000201438121627296084016.jpg',
 					create_time: '2020-10-21 08:00',
 					checked: false
 				},
-				{
-					type: 'image',
-					name: '头像.jpg',
-					data: 'https://wanghuanle.oss-cn-beijing.aliyuncs.com/avatar/a%20%2881%29.jpg',
-					create_time: '2020-10-21 08:00',
-					checked: false
-				},			
 				{
 					type: 'video',
-					name: 'uniapp实战教程.mp4',
-					create_time: '2020-10-21 08:00',
+					name: '马云跳舞.mp4',
+					data: 'https://codejasmine.oss-cn-hangzhou.aliyuncs.com/wususu/d7844a4efd4dfc7aa6a3d139badabde3.mp4',
+					create_time: '2020-10-23 08:40',
 					checked: false
-				},
+				},			
 				{
 					type: 'text',
 					name: '记事本.txt',
@@ -304,7 +325,22 @@ export default {
 					urls:images.map(item=>item.data)
 				})
 					break;
+				case 'video':
+				uni.navigateTo({
+					url: '../video/video?url='+item.data + '&title=' + item.name,
+				});
+					break;
+				default:
+					break;
 			}
+		},
+		// 切换排序
+		changeSort(index) {
+			this.sortIndex = index;
+			this.$refs.sort.close();
+		},
+		openSortDialog() {
+			this.$refs.sort.open();
 		}
 	},
 	//计算属性
@@ -346,4 +382,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style></style>	

@@ -16,6 +16,10 @@
             "path" : "pages/list/list",
             "style" : {}
         }
+        ,{
+            "path" : "pages/video/video",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
