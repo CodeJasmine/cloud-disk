@@ -1,82 +1,78 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path" : "pages/login/login",
+			"style" :{
+			    "app-plus":{
+					"titleNView":false
+				}
+			}
+		},{
 			"path": "pages/index/index",
 			"style": {
-				"app-plus":{
-					"titleNView":false
+				"app-plus": {
+					"titleNView": false
 				}
 			}
 		}
 	    ,{
             "path" : "pages/my/my",
-            "style" : {
-            	"app-plus":{
-            		"titleNView":false
-            	}
-            }
+            "style" : {}
         }
         ,{
-            "path": "pages/list/list",
-                  "style": {
-                    "navigationBarTitleText": "传输列表",
-                    "app-plus": {
-                      "titleNView": {
-                        "buttons": [{
-                          "color": "#333333",
-                          "colorPressed": "#009CFF",
-                          "float": "right",
-                          "fontSize": "22px",
-                          "fontSrc": "/static/iconfont.ttf",
-                          "text": "\ue64a"
-                        }]
-                      }
-                    }
-                  }
-        }
-        ,{
-            "path" : "pages/video/video",
+            "path" : "pages/list/list",
             "style" : {
-            	"app-plus":{
-            		"titleNView":false
-            	}
-            }
-        }
-        ,{
-            "path" : "pages/login/login",
-            "style" : {
-				"app-plus":{
-					"titleNView":false
+				"navigationBarTitleText": "传输列表",
+				"app-plus": {
+					"titleNView": {				
+						"buttons": [{
+							"color": "#333333",
+							"colorPressed": "#009CFF",
+							"float": "right",
+							"fontSize": "22px",
+							"fontSrc": "/static/iconfont.ttf",
+							"text": "\ue64a"
+						}]
+				    }
 				}
 			}
         }
+        ,{
+            "path" : "pages/video/video",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "cloud-disk",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarTextStyle": "black",		
+		"navigationBarTitleText": "uni-app",		
+		"navigationBarBackgroundColor": "#F8F8F8",		
 		"backgroundColor": "#F8F8F8"
 	},
-	"tabBar": {
-	    "backgroundColor": "#FFFFFF",
-	    "borderStyle": "black",
-	    "color": "#BDBDBD",
-	    "selectedColor": "#009CFF",
-	    "list": [{
-	      "iconPath": "static/tabbar/index.png",
-	      "selectedIconPath": "static/tabbar/index-selected.png",
+	"tabBar": {	
+	    "backgroundColor": "#FFFFFF",	
+	    "borderStyle": "black",	
+	    "color": "#BDBDBD",	
+	    "selectedColor": "#009CFF",	
+	    "list": [{	
+	      "iconPath": "static/tabbar/shouye.png",	
+	      "selectedIconPath": "static/tabbar/index-selected.png",	
 	      "pagePath": "pages/index/index",
-	      "text": "首页"
-	    }, {
+	      "text": "首页"	
+	    }, {	
 	      "iconPath": "static/tabbar/list.png",
-	      "selectedIconPath": "static/tabbar/list-selected.png",
+	      "selectedIconPath": "static/tabbar/list-selected.png",	
 	      "pagePath": "pages/list/list",
-	      "text": "传输"
-	    }, {
-	      "iconPath": "static/tabbar/my.png",
-	      "selectedIconPath": "static/tabbar/my-selected.png",
+	      "text": "传输"	
+	    }, {	
+	      "iconPath": "static/tabbar/my.png",	
+	      "selectedIconPath": "static/tabbar/my-selected.png",	
 	      "pagePath": "pages/my/my",
-	      "text": "我的"
-	    }]
+	      "text": "我的"	
+	    }]	
 	  }
 }

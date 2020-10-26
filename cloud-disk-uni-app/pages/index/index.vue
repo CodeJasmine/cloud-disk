@@ -299,6 +299,10 @@ export default {
 				case '下载':
 					this.download();
 					break;
+				case '分享':
+					this.share();
+					this.handleCheckAll(false);
+					break;
 				default:
 				break;				
 			}
@@ -337,7 +341,7 @@ export default {
 					},{
 						token:true
 					}).then(res=>{
-						this.genData();
+						this.getData();
 						uni.showToast({
 							title:'新建文件夹成功',
 							icon:'none'
@@ -501,6 +505,33 @@ export default {
 				icon:'none'
 			});
 			this.handleCheckAll(false);
+		},
+		//分享方法
+		share(){
+			this.$H
+				.post('/share/create',{
+					file_id: this.checkList[0].id
+				},{token: true},).then(res => {
+					uni.showModal({
+						content:res,
+						showCancel:false,
+						success: result => {
+							//不能再用res,会和前面冲突
+							// #ifdef H5
+							uni.setClipboardData({
+								//复制到剪贴板
+								data: res,
+								success:() => {
+									uni.showToast({
+										title:'复制成功',
+										icon:'none'
+									});
+								}
+							});
+							// #endif
+						}
+					})
+				})
 		}
 	},
 	//计算属性

@@ -13,7 +13,7 @@ class UserController extends Controller {
         type: 'string',
         desc: '用户名',
         range: {
-          min: 1,
+          min: 5,
           max: 20,
         },
       },
@@ -107,15 +107,6 @@ class UserController extends Controller {
     ctx.apiSuccess(user)
   }
 
-  // 验证密码
-  checkPassword(password, hash_password) {
-    const hmac = crypto.createHash('sha256', this.app.config.crypto.secret)
-    hmac.update(password)
-    if (hmac.digest('hex') !== hash_password) {
-      this.ctx.throw(400, '密码错误')
-    }
-    return true
-  }
   // 退出登录
   async logout() {
     const { ctx, service } = this
@@ -124,6 +115,25 @@ class UserController extends Controller {
       ctx.throw(400, '退出登录失败')
     }
     ctx.apiSuccess('退出登录成功')
+  }
+
+  //剩余容量
+  async getSize() {
+    const { ctx, service } = this
+    return ctx.apiSuccess({
+      total_size: ctx.authUser.total_size,
+      used_size: ctx.authUser.used_size,
+    })
+  }
+
+  // 验证密码
+  checkPassword(password, hash_password) {
+    const hmac = crypto.createHash('sha256', this.app.config.crypto.secret)
+    hmac.update(password)
+    if (hmac.digest('hex') !== hash_password) {
+      this.ctx.throw(400, '密码错误')
+    }
+    return true
   }
 }
 
