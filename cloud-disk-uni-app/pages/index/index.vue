@@ -175,21 +175,16 @@ export default {
 				},
 				{
 					type: 'image',
-					name: '狗.jpg',
-					data: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603469593793&di=fb7568f38b1994828ae0b71adbcbcb39&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F18%2F56%2F14300000958002128488569856508.jpg',
+					name: '风景.jpg',
+					// data: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603469593793&di=fb7568f38b1994828ae0b71adbcbcb39&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F18%2F56%2F14300000958002128488569856508.jpg',
+					data:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2432138309,903609407&fm=26&gp=0.jpg',
 					create_time: '2020-10-21 08:00',
 					checked: false
 				},
-				{
-					type: 'image',
-					name: '猫.jpg',
-					data: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603469630232&di=1b1d5cc4a24f0574aeebadd09a61ce30&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F30%2F29%2F01300000201438121627296084016.jpg',
-					create_time: '2020-10-21 08:00',
-					checked: false
-				},
+			
 				{
 					type: 'video',
-					name: '马云跳舞.mp4',
+					name: 'uni-app学习.mp4',
 					data: 'https://codejasmine.oss-cn-hangzhou.aliyuncs.com/wususu/d7844a4efd4dfc7aa6a3d139badabde3.mp4',
 					create_time: '2020-10-23 08:40',
 					checked: false

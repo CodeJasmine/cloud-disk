@@ -1,8 +1,12 @@
 # 网盘
 
+
+
 # 1、项目功能介绍
 
-![](https://cdn.nlark.com/yuque/0/2020/png/297164/1603357247006-2882452d-157e-4386-b678-955f36b716f6.png)# 2、环境搭建和项目创建
+![](https://cdn.nlark.com/yuque/0/2020/png/297164/1603621534475-918736e2-9cdd-466b-9ef3-2ec5b50ca949.png)# 2、环境搭建和项目创建
+
+> HBuilderX，创建uni-app项目，默认模版即可
 
 # 3、项目分析和全局配置
 
@@ -276,6 +280,7 @@ methods中具体方法，遍历数组，将所有元素置为入参的值
 - 引入
 
 ![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603350037509-1122aa49-62c1-4e80-8d2f-7f0817570b6e.png#align=left&display=inline&height=284&margin=%5Bobject%20Object%5D&name=image.png&originHeight=568&originWidth=1262&size=87435&status=done&style=none&width=631)
+## 
 
 - 为底部操作条的每个item绑定处理事件，**添加红框标注代码**
 
@@ -386,7 +391,7 @@ addList:[{
 
 - 新建文件夹对话框和操作条事件绑定
 
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603355099141-5ce4d29f-e83d-4057-9523-00f8848e632a.png#align=left&display=inline&height=584&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1268&originWidth=2048&size=332566&status=done&style=none&width=943)
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603355099141-5ce4d29f-e83d-4057-9523-00f8848e632a.png#align=left&display=inline&height=549&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1268&originWidth=2048&size=332566&status=done&style=none&width=886)
 别忘了在data中增加变量
 ![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603355140838-9f7fd504-13f7-41e5-aaa1-463a042afca8.png#align=left&display=inline&height=285&margin=%5Bobject%20Object%5D&name=image.png&originHeight=570&originWidth=1300&size=67705&status=done&style=none&width=650)
 现在，去methods中添加handleAddEvent()方法，处理各种添加操作
@@ -404,79 +409,307 @@ addList:[{
 
 ## 图片预览功能
 
+- 首先我们需要给flist组件添加点击事件，通过emit回传给父组件
+
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603369669611-47662d38-438b-41f3-bf76-a213f25c51e8.png#align=left&display=inline&height=196&margin=%5Bobject%20Object%5D&name=image.png&originHeight=472&originWidth=2164&size=124577&status=done&style=none&width=900)
+
+- 父组件index.vue接收到之后，调用doEvent(item)方法来处理，根据点击的item元素是什么类型文件，进行具体处理
+
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603369722020-aca9fe89-72f3-4300-bf2a-4fecbc1c0d4d.png#align=left&display=inline&height=251&margin=%5Bobject%20Object%5D&name=image.png&originHeight=502&originWidth=1140&size=64468&status=done&style=none&width=570)
+
+- **对于item的类型是图片的，使用预览功能**（因为列表中可能有多个图片文件，所以要过滤出所有图片文件，可以切换查看
+
+
+
+注意：运行之前，我们需要去修改下list的数据，让图片类型的文件具有可访问的data属性值
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603370733149-2f8fdc15-e9a6-4b5d-aefa-9d9ac5f5dd7b.png#align=left&display=inline&height=170&margin=%5Bobject%20Object%5D&name=image.png&originHeight=340&originWidth=1490&size=51812&status=done&style=none&width=745)
+
+------
+
+运行，查看效果
+
+[![5.mp4 (2.16MB)](https://gw.alipayobjects.com/mdn/prod_resou/afts/img/A*NNs6TKOR3isAAAAAAAAAAABkARQnAQ)]()
+
+**推送**
+
+------
+
 ## 视频播放功能
+
+- 先给list中的视频文件数据添加可访问的data属性，自行准备
+- 新建video.vue页面
+- 处理点击事件，判断如果类型为video的文件，则跳转到 video页面，**并把视频的地址和名称带过去**
+
+**![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603371136147-cffbd980-17db-45ee-a78f-2f1df4e7560d.png#align=left&display=inline&height=482&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1102&originWidth=1632&size=163311&status=done&style=none&width=714)**
+
+**video页面**
+**![carbon (1).png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603372731812-12640b8e-ae98-4542-b5a4-89205d27c45f.png#align=left&display=inline&height=876&margin=%5Bobject%20Object%5D&name=carbon%20%281%29.png&originHeight=2066&originWidth=1668&size=341318&status=done&style=none&width=707)**
+
+------
+
+运行效果
+[![6.mp4 (12.16MB)](https://gw.alipayobjects.com/mdn/prod_resou/afts/img/A*NNs6TKOR3isAAAAAAAAAAABkARQnAQ)]()
+
+**推送！**
+
+------
+
+
 
 # 10、文件排序功能
 
 ## 文件排序弹框
 
-# 11、下载和上传状态列表
+- 先定义排序类型和默认选中索引
 
-## 下载和上传状态列表（一）
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603374508364-4fdf0b4b-efef-4806-ae88-eacb4f5679c3.png#align=left&display=inline&height=255&margin=%5Bobject%20Object%5D&name=image.png&originHeight=558&originWidth=1218&size=62483&status=done&style=none&width=556)
 
-## 下载和上传状态列表（二）
+- 页面中加入排序对话框
 
-## 下载和上传状态列表（三）
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603374640261-65ff1caf-b03b-4f07-b5f8-ba7e2d11461c.png#align=left&display=inline&height=321&margin=%5Bobject%20Object%5D&name=image.png&originHeight=770&originWidth=1980&size=157129&status=done&style=none&width=825)
 
-# 12、个人中心
+- methods中添加changeSort(index)方法，根据排序类型的索引切换不同的排序（功能等前后端联调再实现）
 
-## 个人中心页开发
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603374896632-18418c00-31c2-4817-a82b-7d810af2fe2d.png#align=left&display=inline&height=145&margin=%5Bobject%20Object%5D&name=image.png&originHeight=290&originWidth=738&size=38428&status=done&style=none&width=369)
 
-# 13、Vuecli+iView项目初始化
+- 为导航栏的“更多”图标绑定点击事件
 
-## 创建Vuecli4项目
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603374347042-6d1cb195-5ceb-468d-b49d-62a4d8b5d6b4.png#align=left&display=inline&height=407&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1024&originWidth=1732&size=189375&status=done&style=none&width=688)
 
-## 引入iView组件库
+methods中的openSortDialog方法
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603374812963-30971ce3-dbf0-4c44-8f6a-1100d58b4c26.png#align=left&display=inline&height=101&margin=%5Bobject%20Object%5D&name=image.png&originHeight=202&originWidth=618&size=25487&status=done&style=none&width=309)
 
-## 引入bootstrap4和图标库
-
-## 安装和配置路由
-
-# 14、PC端登录页
-
-## PC端登录页开发（一）
-
-## PC端登录页开发（二）
-
-## PC端登录页开发（三）
-
-# 15、PC端全局布局开发
-
-## PC端全局布局开发（一）
-
-## PC端全局布局开发（二）-顶部导航
-
-# 16、PC端侧边栏开发
-
-## PC端侧边栏开发（一）—菜单
-
-## PC端侧边栏开发（二）—容量提示
-
-# 17、PC端文件列表开发
-
-## PC端文件列表开发——操作条
-
-## PC端文件列表开发（二）——列表（1）
-
-## PC端文件列表开发（二）——列表（2）
-
-# 18、封装多功能文件列表组件
-
-## 封装文件列表组件（1）
-
-## 封装文件列表组件（2）删除
-
-## 封装文件列表组件（3）多选操作
-
-## 封装文件列表组件（4）重命名
-
-## 封装文件列表组件（5） 图片预览
+运行效果，点击导航栏最右边的图标，下面弹出排序对话框
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603374946968-93f129f1-fd2c-4e2c-816f-ec95ea581d3d.png#align=left&display=inline&height=704&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1716&originWidth=838&size=303824&status=done&style=none&width=344)
+**
+**推送**
 
 
 
 ------
 
-# 19、Egg.js基础入门
+# 11、下载和上传状态列表
+
+> 就是第二个tab页
+
+
+
+- 先到pages.json配置一下传输列表页面的顶部导航
+
+```javascript
+"path": "pages/list/list",
+			"style": {
+				"navigationBarTitleText": "传输列表",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"color": "#333333",
+							"colorPressed": "#009CFF",
+							"float": "right",
+							"fontSize": "22px",
+							"fontSrc": "/static/iconfont.ttf",
+							"text": "\ue64a"
+						}]
+					}
+				}
+			}
+```
+
+- 接着去编写list.vue 页面， 这个页面目前就是原生实现了一下tab切换，理解上没任何难度
+
+
+
+![carbon (2).png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603380657798-390abcae-c14c-4557-95c0-e526eaad7dc2.png#align=left&display=inline&height=866&margin=%5Bobject%20Object%5D&name=carbon%20%282%29.png&originHeight=1051&originWidth=790&size=145252&status=done&style=none&width=651)
+
+
+
+------
+
+运行效果
+
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603380718789-b0ec5ab2-2dfc-48f3-b5d3-6d0cb3533fc5.png#align=left&display=inline&height=739&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1716&originWidth=838&size=233368&status=done&style=none&width=361)
+
+然后准备list数据，要改造一下，类似这样，加入download的数值，用来显示下载百分比，文件夹目录的数据不需要
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603400670207-a06601e9-e18c-4d0d-b737-2f179e827b58.png#align=left&display=inline&height=322&margin=%5Bobject%20Object%5D&name=image.png&originHeight=698&originWidth=1538&size=108049&status=done&style=none&width=709)
+
+改造下f-list组件，增加右侧暂停和下方进度条插槽
+
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603433296439-a2d23c61-7e6e-49e2-90f7-40d0cf7f0015.png#align=left&display=inline&height=750&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1500&originWidth=2278&size=311976&status=done&style=none&width=1139)
+
+
+
+用计算属性来区分下载中和下载完成的两种数据，引入自定义list组件
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603401052392-1f0c7271-84e0-49d7-b83d-0698c3985aa9.png#align=left&display=inline&height=502&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1310&originWidth=1354&size=182280&status=done&style=none&width=519)
+
+完整页面内容参考
+![carbon (1).png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603401511794-1e4ef706-1bfb-4b1b-91a0-44a7ea089e31.png#align=left&display=inline&height=1107&margin=%5Bobject%20Object%5D&name=carbon%20%281%29.png&originHeight=1272&originWidth=1024&size=301860&status=done&style=none&width=891)
+
+
+
+运行效果
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603401768118-8d60b442-c446-4493-8182-78d7969f817b.png#align=left&display=inline&height=739&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1716&originWidth=838&size=305269&status=done&style=none&width=361)
+**推送**
+
+------
+
+# 12、个人中心页
+
+纯静态页面，可复制粘贴参考代码。右箭头图标自己找一个
+
+```html
+<template>
+	<view>
+		<view class="p-3 flex align-center">
+			<image
+				src="/static/me.jpg"
+				style="width: 120rpx;height: 120rpx;"
+				class="rounded-circle flex-shrink mr-3"
+			></image>
+			<view class="flex-1 flex flex-column text-muted font">
+				<view class="flex align-end">
+					<text class="font-lg text-dark mr-2">陶然然</text>
+					女 江苏
+				</view>
+				<text class="text-ellipsis">软件工程师</text>
+			</view>
+		</view>
+		<view class="bg-light" style="height: 20rpx;"></view>
+		<view class="p-3">
+			<progress class="mb-3" percent="40" active stroke-width="3" />
+			<view class="flex align-center justify-between font">
+				<text class="text-light-muted">总：100GB</text>
+				<text class="text-warning">已用：80GB</text>
+			</view>
+		</view>
+		<view class="bg-light" style="height: 20rpx;"></view>
+		<view class="flex justify-between p-3">
+			<text class="text-muted font">设置</text>
+			<image src="../../static/arrow-right.png" mode="" style="width:40rpx;height: 40rpx;"></image>
+		</view>
+	</view>
+</template>
+
+<script>
+export default {
+	data() {
+		return {};
+	},
+	methods: {}
+};
+</script>
+
+<style></style>
+
+```
+
+------
+
+运行效果
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603403276227-23b6f377-0f62-467d-9f01-07cd94934aab.png#align=left&display=inline&height=680&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1716&originWidth=838&size=258479&status=done&style=none&width=332)
+**推送**
+
+------
+
+# 13、注册登录页
+
+新建login页面，配置pages.json
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603404014808-438451c3-7c73-40fd-8710-e9aa16aa6f70.png#align=left&display=inline&height=372&margin=%5Bobject%20Object%5D&name=image.png&originHeight=882&originWidth=1414&size=111814&status=done&style=none&width=597)
+
+纯静态页面，可复制粘贴参考代码
+
+```html
+<template>
+	<view>
+		<view style="height: 44px;"></view>
+		<view
+			class="flex align-center justify-center font-lg text-muted"
+			style="margin-top: 100rpx;margin-bottom: 80rpx;"
+		>
+			欢迎回来
+		</view>
+
+		<view class="px-4">
+			<input
+				type="text"
+				v-model="form.username"
+				class="uni-input bg-light rounded mb-4"
+				placeholder="手机号/用户名/邮箱"
+			/>
+			<input
+				type="text"
+				v-model="form.password"
+				class="uni-input bg-light rounded mb-4"
+				placeholder="请输入密码"
+			/>
+			<input
+				v-if="type === 'reg'"
+				type="text"
+				v-model="form.repassword"
+				class="uni-input bg-light rounded mb-4"
+				placeholder="请输入确认密码"
+			/>
+
+			<view
+				class="bg-main text-white flex align-center justify-center font-md py-2 rounded-circle"
+				hover-class="bg-main-hover"
+				@click="handleClick"
+			>
+				{{ type === 'login' ? '登 录' : '注 册' }}
+			</view>
+		</view>
+
+		<view class="flex align-center justify-center pt-5">
+			<view class="text-muted mx-2 font-sm" @click="changeType">
+				{{ type === 'login' ? '注册账号' : '去登录' }}
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			type: 'login',
+			form: {
+				username: '',
+				password: '',
+				repassword: ''
+			}
+		};
+	},
+	methods: {
+		changeType() {
+			this.type = this.type === 'login' ? 'reg' : 'login';
+		},
+		handleClick() {
+			if (this.type === 'login') {
+				uni.switchTab({
+					url: '../index/index'
+				});
+			}
+		}
+	}
+};
+</script>
+
+<style></style>
+
+
+```
+
+------
+
+运行效果
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603403540743-b836397a-b26b-414d-861d-78c2addf011e.png#align=left&display=inline&height=633&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1698&originWidth=1598&size=904002&status=done&style=none&width=596)
+**
+**推送**
+
+
+
+------
+
+# 14、Egg.js基础入门
 
 ## 1. 创建项目
 
@@ -484,6 +717,7 @@ addList:[{
 
 ```shell
 npm config set registry https://registry.npm.taobao.org
+
 ```
 
    使用脚手架快速生成项目
@@ -492,6 +726,7 @@ npm config set registry https://registry.npm.taobao.org
 mkdir egg-example && cd egg-example
 npm init egg --type=simple --registry https://registry.npm.taobao.org
 npm i
+
 ```
 
 启动项目
@@ -502,7 +737,7 @@ open http://localhost:7001
 
 ```
 
-## 2. 关闭csrf，开启跨域，写一个接口
+## 2. 关闭csrf，开启跨域
 
 [
 
@@ -546,7 +781,7 @@ cors:{
 
 ```
 
-- 现在，写一个简单的接口
+## 3. 写一个简单的接口
 
 在app的controller目录下，home.js
 
@@ -607,7 +842,7 @@ module.exports = (app) => {
 可以在控制台看到结果
 ![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603251469704-6a2330f2-8f61-482a-95f6-77b43cdcfe67.png#align=left&display=inline&height=122&margin=%5Bobject%20Object%5D&name=image.png&originHeight=244&originWidth=1880&size=140109&status=done&style=none&width=940)
 
-## 3.全局相关设置
+## 4.全局相关设置
 
 - 封装api返回格式扩展
 
@@ -830,11 +1065,11 @@ ismobile(ctx){
 
 ## 
 
-## 20、Egg.js后端API开发和部署
+# 15、后端API开发和部署
 
-## 1）用户相关
+## 1. 用户相关API
 
-- 数据表设计和迁移
+### 数据表设计
 
   创建数据迁移表，user为表名
 
@@ -1027,7 +1262,7 @@ module.exports = (app) => {
 
 现在，用户数据表和数据对象都已经准备好了，就可以对用户进行各种功能接口的开发啦！
 
-- 注册功能
+### 注册功能
 
 我们到controller新建一个user.js，用来当user的控制器
 自带async异步真是好用，基本的语法应该都能看懂的哈，和JPA很像啊，直接从数据模型查询操作，不走数据库SQL
@@ -1085,12 +1320,11 @@ module.exports = UserController;
 
 ```
 
-现在，在postman来测试一下，ok了。有个地方卡了一下，然后运行出来的，真是感动啊！
+现在，在postman来测试一下，ok了。
 ![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603287936319-da52762f-942e-489a-b70b-8d5f0a66d899.png#align=left&display=inline&height=581&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1316&originWidth=2174&size=180803&status=done&style=none&width=960)
-男就男吧
 ![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603288084554-3ee08edb-9b8a-47ec-8ede-0eb07a958f3a.png#align=left&display=inline&height=289&margin=%5Bobject%20Object%5D&name=image.png&originHeight=890&originWidth=2790&size=900113&status=done&style=none&width=906)
 
-- 参数验证
+### 参数验证
 
 我们可以为请求加入参数验证的功能
 安装校验插件
@@ -1179,6 +1413,10 @@ module.exports = (option, app) => {
 
 ```
 
+**
+
+------
+
 **在控制器里的使用方法**
 
 ```javascript
@@ -1208,15 +1446,1239 @@ class XXXController extends app.Controller {
 
 ```
 
-## 
-**以下段落为参数校验的API详解，可以暂时先跳过，知道有这些即可，用的时候再查**
+**
+
+
 
 ------
 
+现在，我们把参数校验加入用户注册功能
+
+```javascript
+'use strict';
+
+const Controller = require('egg').Controller;
+class UserController extends Controller {
+    // 注册
+    async reg() {
+        const { ctx, app } = this;
+        // 参数验证，用户名至少5个字符，最长20个字符，密码和确认密码必须一致
+        ctx.validate({
+            username: {
+                required: true,
+                type: "string",
+                desc: "用户名",
+                range: {
+                    min: 5,
+                    max: 20
+                },
+            },
+            password: {
+                required: true,
+                type: "string",
+                desc: "密码"
+            },
+            repassword: {
+                required: true,
+                type: "string",
+                desc: "确认密码"
+            }
+        });
+
+        let { username, password, repassword } = ctx.request.body;
+
+        if (password !== repassword) {
+            return ctx.throw(400, '密码和确认密码不相同');
+        }
+
+        // 用户名是否存在
+        if (await app.model.User.findOne({
+            where: {
+                username
+            }
+        })) {
+            ctx.throw(400, '用户名已存在');
+        }
+
+        // 创建用户
+        let user = await app.model.User.create({
+            username,
+            password
+        });
+
+        if (!user) {
+            ctx.throw(400, '注册失败');
+        }
+
+        user = JSON.parse(JSON.stringify(user));
+        delete user.password;
+
+        ctx.apiSuccess(user);
+    }
+}
+
+module.exports = UserController;
+
+
+```
+
+Postman测试，已经生效～
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603290457649-3bb688a6-0273-4d2e-9353-5218268e74e2.png#align=left&display=inline&height=382&margin=%5Bobject%20Object%5D&name=image.png&originHeight=958&originWidth=1896&size=128083&status=done&style=none&width=757)
+
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603290514711-e0ce5950-574a-42c6-9972-5a1cb009391a.png#align=left&display=inline&height=381&margin=%5Bobject%20Object%5D&name=image.png&originHeight=976&originWidth=1948&size=133219&status=done&style=none&width=760)
+
+### crypto数据加密
+
+> nodejs 中的 crypto 模块提供了各种各样加密算法的 API，几类常用算法：
+>
+> - 散列(Hash)算法
+> - HMac 算法
+> - 对称加密(AES)与非对称加密解密(RSA)
+> - 签名和验证算法
+
+
+
+
+
+crypto 模块目的是提供加密功能，包含对 OpenSSL 的哈希、HMAC、加密、解密、签名、以及验证功能的一整套封装。
+Nodejs用C/C++实现这些算法后，通过cypto这个模块暴露为JavaScript接口，这样用起来方便，运行速度也较直接使用JavaScript快。
+
+我们先安装
+
+```shell
+npm install crypto --save
+
+```
+
+在config.default.js配置，加个很随机的密钥
+
+```javascript
+config.crypto = {
+    secret:  'qhdgw@45ncashdaksh2!#@3nxjdas*_672'
+};
+
+```
+
+使用方法：
+
+```javascript
+// 引入
+const crypto = require('crypto');
+
+// 加密
+async createPassword(password) {
+    const hmac = crypto.createHash("sha256", this.app.config.crypto.secret);
+    hmac.update(password);
+    return hmac.digest("hex");
+}
+
+// 验证密码
+async checkPassword(password, hash_password) {
+    // 先对需要验证的密码进行加密
+    password = await this.createPassword(password);
+    return password === hash_password;
+}
+
+```
+
+现在，来为注册时的密码加密，修改model包中user数据模型的password属性，给它进行hmac加密
+**一定不要忘记头部引入crypto模块**
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603291307631-6cfc2e6c-e37c-4037-8d48-bb4eb5df344f.png#align=left&display=inline&height=510&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1360&originWidth=1934&size=232872&status=done&style=none&width=725)
+
+```javascript
+ password: {
+            type: STRING,
+            allowNull: false,
+            defaultValue: '',
+            comment: "密码",
+            set(val) {
+                const hmac = crypto.createHash("sha256", app.config.crypto.secret);
+                hmac.update(val);
+                this.setDataValue('password', hmac.digest("hex"));
+            }
+        },
+
+```
+
+现在在Postman再注册一次，看下数据库的密码字段
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603291481506-689ef845-5222-462b-92ea-d4ed229d0ab3.png#align=left&display=inline&height=337&margin=%5Bobject%20Object%5D&name=image.png&originHeight=966&originWidth=2192&size=149885&status=done&style=none&width=765)
+
+看来密码字段设置得太短了，改大点
+**![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603291843631-ae7e1b5d-3146-4b54-91fc-ba5cd291f774.png#align=left&display=inline&height=381&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1060&originWidth=1716&size=226112&status=done&style=none&width=616)**
+然后**把user表删掉，执行变更，重新生成表**
+
+```shell
+npx sequelize db:migrate
+
+```
+
+再测试，成功
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603291919664-07b4439d-6e6e-4c3b-bf64-c64a734fa2b2.png#align=left&display=inline&height=444&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1318&originWidth=2192&size=209912&status=done&style=none&width=738)
+数据库查看下密码字段，已经成功加密
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603292012349-eef58e9e-f8d1-4401-95f6-5fc6d852a535.png#align=left&display=inline&height=96&margin=%5Bobject%20Object%5D&name=image.png&originHeight=192&originWidth=2266&size=89957&status=done&style=none&width=1133)
+### 
+
+------
+
+### redis缓存插件和封装
+
+- 安装
+
+```shell
+npm i egg-redis --save
+
+```
+
+- plugin.js
+
+```javascript
+ redis: {
+    enable: true,
+    package: 'egg-redis',
+  },
+
+```
+
+- config.default.js
+
+```javascript
+ // redis存储
+  config.redis = {
+    client: {
+      port: 6379, // Redis port
+      host: '127.0.0.1', // Redis host
+      password: '',
+      db: 1,
+    },
+  };
+
+```
+
+app目录新建service目录，创建cache.js 缓存服务文件，用来做redis的写入和读取等
+
+```javascript
+'use strict'
+const Service = require('egg').Service
+
+class CacheService extends Service {
+  /**
+   * 获取列表
+   * @param {string} key 键
+   * @param {boolean} isChildObject 元素是否为对象
+   * @return { array } 返回数组
+   */
+  async getList(key, isChildObject = false) {
+    const { redis } = this.app
+    let data = await redis.lrange(key, 0, -1)
+    if (isChildObject) {
+      data = data.map((item) => {
+        return JSON.parse(item)
+      })
+    }
+    return data
+  }
+  /**
+   * 设置列表
+   * @param {string} key 键
+   * @param {object|string} value 值
+   * @param {string} type 类型：push和unshift
+   * @param {Number} expir 过期时间 单位秒
+   * @return { Number } 返回索引
+   */
+  async setList(key, value, type = 'push', expir = 0) {
+    const { redis } = this.app
+    if (expir > 0) {
+      await redis.expire(key, expir)
+    }
+    if (typeof value === 'object') {
+      value = JSON.stringify(value)
+    }
+    if (type === 'push') {
+      return await redis.rpush(key, value)
+    }
+    return await redis.lpush(key, value)
+  }
+
+  /**
+   * 设置 redis 缓存
+   * @param { String } key 键
+   * @param {String | Object | array} value 值
+   * @param { Number } expir 过期时间 单位秒
+   * @return { String } 返回成功字符串OK
+   */
+  async set(key, value, expir = 0) {
+    const { redis } = this.app
+    if (expir === 0) {
+      return await redis.set(key, JSON.stringify(value))
+    }
+    return await redis.set(key, JSON.stringify(value), 'EX', expir)
+  }
+
+  /**
+   * 获取 redis 缓存
+   * @param { String } key 键
+   * @return { String | array | Object } 返回获取的数据
+   */
+  async get(key) {
+    const { redis } = this.app
+    const result = await redis.get(key)
+    return JSON.parse(result)
+  }
+
+  /**
+   * redis 自增
+   * @param { String } key 键
+   * @param { Number } value 自增的值
+   * @return { Number } 返回递增值
+   */
+  async incr(key, number = 1) {
+    const { redis } = this.app
+    if (number === 1) {
+      return await redis.incr(key)
+    }
+    return await redis.incrby(key, number)
+  }
+
+  /**
+   * 查询长度
+   * @param { String } key
+   * @return { Number } 返回数据长度
+   */
+  async strlen(key) {
+    const { redis } = this.app
+    return await redis.strlen(key)
+  }
+
+  /**
+   * 删除指定key
+   * @param {String} key
+   */
+  async remove(key) {
+    const { redis } = this.app
+    return await redis.del(key)
+  }
+
+  /**
+   * 清空缓存
+   */
+  async clear() {
+    return await this.app.redis.flushall()
+  }
+}
+
+module.exports = CacheService
+
+
+```
+
+**推送**
+
+
+
+------
+
+### jwt加密鉴权
+
+安装jwt
+
+```shell
+npm i egg-jwt --save
+
+```
+
+在plugin.js配置
+
+```javascript
+'use strict';
+
+/** @type Egg.EggPlugin */
+module.exports = {
+  cors: {
+    enable: true,
+    package: 'egg-cors',
+  },
+  sequelize: {
+    enable: true,
+    package: 'egg-sequelize',
+  },
+  valparams: {
+    enable: true,
+    package: 'egg-valparams',
+  },
+  jwt: {
+    enable: true,
+    package: 'egg-jwt',
+  },
+};
+
+
+```
+
+在config.default.js配置
+
+```javascript
+config.jwt = {
+    secret: 'qhdgw@45ncashdaksh2!#@3nxjdas*_672',
+  };
+
+```
+
+```javascript
+'use strict';
+
+module.exports = (option, app) => {
+  return async (ctx, next) => {
+    // 1. 获取 header 头token
+    const { token } = ctx.header;
+    if (!token) {
+      ctx.throw(400, '没有权限访问该接口!');
+    }
+
+    // 2. 根据token解密，换取用户信息
+    let user = {};
+    try {
+      user = app.jwt.verify(token, app.config.jwt.secret);
+    } catch (err) {
+      const fail =
+        err.name === 'TokenExpiredError'
+          ? 'token 已过期! 请重新获取令牌'
+          : 'Token 令牌不合法!';
+      ctx.throw(400, fail);
+    }
+
+    // 3. 判断当前用户是否登录
+    const t = await ctx.service.cache.get('user_' + user.id);
+    if (!t || t !== token) {
+      ctx.throw(400, 'Token 令牌不合法!');
+    }
+
+    // 4. 获取当前用户，验证当前用户是否存在
+    user = await app.model.User.findOne({
+      where: {
+        id: user.id,
+      },
+    });
+
+    if (!user) {
+      ctx.throw(400, '当前用户不存在！');
+    }
+
+    // 5. 把 user 信息挂载到全局ctx上
+    ctx.authUser = user;
+
+    await next();
+  };
+};
+
+```
+
+extend目录context.js生成token
+
+```javascript
+'use strict';
+module.exports = {
+  // 成功提示
+  apiSuccess(data = '', msg = 'ok', code = 200) {
+    this.body = { msg, data };
+    this.status = code;
+  },
+  // 失败提示
+  apiFail(data = '', msg = 'fail', code = 400) {
+    this.body = { msg, data };
+    this.status = code;
+  },
+  // 生成token
+  getToken(value) {
+    return this.app.jwt.sign(value, this.app.config.jwt.secret);
+  },
+  // 生成唯一ID
+  genID(length) {
+    return Number(
+      Math.random().toString().substr(3, length) + Date.now()
+    ).toString(36);
+  },
+  // 是否是移动端访问
+  ismobile() {
+    const userAgent = this.request.header['user-agent'].toLowerCase();
+    const pat_phone = /ipad|iphone os|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/;
+    return pat_phone.test(userAgent);
+  },
+};
+
+
+```
+
+app目录新建service目录，新建cache.js缓存服务文件
+
+```javascript
+'use strict';
+const Service = require('egg').Service;
+
+class CacheService extends Service {
+  /**
+   * 获取列表
+   * @param {string} key 键
+   * @param {boolean} isChildObject 元素是否为对象
+   * @return { array } 返回数组
+   */
+  async getList(key, isChildObject = false) {
+    const { redis } = this.app;
+    let data = await redis.lrange(key, 0, -1);
+    if (isChildObject) {
+      data = data.map(item => {
+        return JSON.parse(item);
+      });
+    }
+    return data;
+  }
+  /**
+   * 设置列表
+   * @param {string} key 键
+   * @param {object|string} value 值
+   * @param {string} type 类型：push和unshift
+   * @param {Number} expir 过期时间 单位秒
+   * @return { Number } 返回索引
+   */
+  async setList(key, value, type = 'push', expir = 0) {
+    const { redis } = this.app;
+    if (expir > 0) {
+      await redis.expire(key, expir);
+    }
+    if (typeof value === 'object') {
+      value = JSON.stringify(value);
+    }
+    if (type === 'push') {
+      return await redis.rpush(key, value);
+    }
+    return await redis.lpush(key, value);
+  }
+
+  /**
+   * 设置 redis 缓存
+   * @param { String } key 键
+   * @param {String | Object | array} value 值
+   * @param { Number } expir 过期时间 单位秒
+   * @return { String } 返回成功字符串OK
+   */
+  async set(key, value, expir = 0) {
+    const { redis } = this.app;
+    if (expir === 0) {
+      return await redis.set(key, JSON.stringify(value));
+    }
+    return await redis.set(key, JSON.stringify(value), 'EX', expir);
+
+  }
+
+  /**
+   * 获取 redis 缓存
+   * @param { String } key 键
+   * @return { String | array | Object } 返回获取的数据
+   */
+  async get(key) {
+    const { redis } = this.app;
+    const result = await redis.get(key);
+    return JSON.parse(result);
+  }
+
+  /**
+   * redis 自增
+   * @param { String } key 键
+   * @param { Number } value 自增的值
+   * @return { Number } 返回递增值
+   */
+  async incr(key, number = 1) {
+    const { redis } = this.app;
+    if (number === 1) {
+      return await redis.incr(key);
+    }
+    return await redis.incrby(key, number);
+
+  }
+
+  /**
+   * 查询长度
+   * @param { String } key
+   * @return { Number } 返回数据长度
+   */
+  async strlen(key) {
+    const { redis } = this.app;
+    return await redis.strlen(key);
+  }
+
+  /**
+   * 删除指定key
+   * @param {String} key
+   */
+  async remove(key) {
+    const { redis } = this.app;
+    return await redis.del(key);
+  }
+
+  /**
+   * 清空缓存
+   */
+  async clear() {
+    return await this.app.redis.flushall();
+  }
+}
+
+module.exports = CacheService;
+
+
+```
+
+
+
+
+
+------
+
+### 登录功能实现
+
+controller下user.js控制器，增加登录和密码验证方法
+
+```javascript
+'use strict';
+
+const Controller = require('egg').Controller;
+const crypto = require('crypto');
+class UserController extends Controller {
+  // 注册
+  async reg() {
+    const { ctx, app } = this;
+    // 参数验证，用户名至少5个字符，最长20个字符，密码和确认密码必须一致
+    ctx.validate({
+      username: {
+        required: true,
+        type: 'string',
+        desc: '用户名',
+        range: {
+          min: 5,
+          max: 20,
+        },
+      },
+      password: {
+        required: true,
+        type: 'string',
+        desc: '密码',
+      },
+      repassword: {
+        required: true,
+        type: 'string',
+        desc: '确认密码',
+      },
+    });
+
+    const { username, password, repassword } = ctx.request.body;
+
+    if (password !== repassword) {
+      return ctx.throw(400, '密码和确认密码不相同');
+    }
+
+    // 用户名是否存在
+    if (
+      await app.model.User.findOne({
+        where: {
+          username,
+        },
+      })
+    ) {
+      ctx.throw(400, '用户名已存在');
+    }
+
+    // 创建用户
+    let user = await app.model.User.create({
+      username,
+      password,
+    });
+
+    if (!user) {
+      ctx.throw(400, '注册失败');
+    }
+
+    user = JSON.parse(JSON.stringify(user));
+    delete user.password;
+
+    ctx.apiSuccess(user);
+  }
+
+  // 登录
+  async login() {
+    const { ctx, app } = this;
+    // 参数验证
+    ctx.validate({
+      username: {
+        required: true,
+        type: 'string',
+        desc: '用户名',
+      },
+      password: {
+        required: true,
+        type: 'string',
+        desc: '密码',
+      },
+    });
+    // 获取到数据
+    const { username, password } = ctx.request.body;
+    // 验证用户是否存在
+    let user = await app.model.User.findOne({
+      where: {
+        username,
+      },
+    });
+
+    if (!user) {
+      return ctx.apiFail('当前用户不存在');
+    }
+    // 验证密码
+    this.checkPassword(password, user.password);
+
+    user = JSON.parse(JSON.stringify(user));
+
+    // 生成token
+    user.token = ctx.getToken(user);
+    delete user.password;
+
+    // 加入缓存中
+    if (!(await this.service.cache.set('user_' + user.id, user.token))) {
+      ctx.throw(400, '登录失败');
+    }
+
+    ctx.apiSuccess(user);
+  }
+
+  // 验证密码
+  checkPassword(password, hash_password) {
+    const hmac = crypto.createHash('sha256', this.app.config.crypto.secret);
+    hmac.update(password);
+    if (hmac.digest('hex') !== hash_password) {
+      this.ctx.throw(400, '密码错误');
+    }
+    return true;
+  }
+}
+
+module.exports = UserController;
+
+
+```
+
+**测试登录功能，一定先开启本地的redis服务！！！**
+**
+[![7.mp4 (12.64MB)](https://gw.alipayobjects.com/mdn/prod_resou/afts/img/A*NNs6TKOR3isAAAAAAAAAAABkARQnAQ)]()
+
+
+
+------
+
+### 全局权限验证中间件的实现
+
+在middleware目录新建auth.js文件，统一实现全局权限验证
+
+```javascript
+'use strict';
+
+module.exports = (option, app) => {
+  return async (ctx, next) => {
+    // 1. 获取 header 头token
+    const { token } = ctx.header;
+    if (!token) {
+      ctx.throw(400, '没有权限访问该接口!');
+    }
+
+    // 2. 根据token解密，换取用户信息
+    let user = {};
+    try {
+      user = app.jwt.verify(token, app.config.jwt.secret);
+    } catch (err) {
+      const fail =
+        err.name === 'TokenExpiredError'
+          ? 'token 已过期! 请重新获取令牌'
+          : 'Token 令牌不合法!';
+      ctx.throw(400, fail);
+    }
+
+    // 3. 判断当前用户是否登录
+    const t = await ctx.service.cache.get('user_' + user.id);
+    if (!t || t !== token) {
+      ctx.throw(400, 'Token 令牌不合法!');
+    }
+
+    // 4. 获取当前用户，验证当前用户是否存在
+    user = await app.model.User.findOne({
+      where: {
+        id: user.id,
+      },
+    });
+
+    if (!user) {
+      ctx.throw(400, '当前用户不存在！');
+    }
+
+    // 5. 把 user 信息挂载到全局ctx上
+    ctx.authUser = user;
+
+    await next();
+  };
+};
+
+```
+
+在config.default.js配置一下中间件
+![image.png](https://cdn.nlark.com/yuque/0/2020/png/297164/1603616302596-f1d2236b-f21a-41e4-84f9-fd651278bb6c.png#align=left&display=inline&height=1154&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1154&originWidth=1468&size=172363&status=done&style=none&width=1468)
+
+
+
+
+
+------
+
+### 退出登录
+
+user控制器
+
+```
+// 退出登录
+  async logout() {
+    const { ctx, service } = this;
+    const currentUserId = ctx.authUser.id;
+    if (!await service.cache.remove('user_' + currentUserId)) {
+      ctx.throw(400, '退出登录失败');
+    }
+    ctx.apiSuccess('退出登录成功');
+  }
+
+```
+
+路由
+
+```
+// 退出登录
+  router.post('/logout', controller.user.logout);
+
+```
+
+
+
+------
+
+## 2. 文件相关API
+
+### 上传文件
+
+[egg-oss文档](https://www.npmjs.com/package/egg-oss)
+
+- 安装egg-oss插件
+
+npm i egg-oss --save
+
+- 配置 config/plugin.js
+
+oss: {
+    enable: true,
+    package: 'egg-oss',
+  }
+
+- 创建数据迁移表file
+  项目根目录执行
+
+npx sequelize migration:generate --name=file
+
+- 配置database / migrations / 目录下生成的数据表迁移文件
+
+'use strict';
+
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    const { INTEGER, STRING, DATE, ENUM, TEXT } = Sequelize;
+    return queryInterface.createTable('file', {
+      id: {
+        type: INTEGER(20),
+        primaryKey: true,
+        autoIncrement: true
+      },
+      name: {
+        type: STRING(100),
+        allowNull: false,
+        defaultValue: '',
+        comment: '文件名'
+      },
+      ext: {
+        type: STRING(50),
+        allowNull: true,
+        defaultValue: '',
+        comment: '文件扩展名'
+      },
+      md: {
+        type: STRING,
+        allowNull: true,
+        defaultValue: '',
+        comment: '文件MD5'
+      },
+      file_id: {
+        type: INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+        comment: '父级id'
+      },
+      user_id: {
+        type: INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+        comment: '用户id',
+        references: {
+          model: 'user',
+          key: 'id'
+        },
+        onDelete: 'cascade',
+        onUpdate: 'restrict', // 更新时操作
+      },
+      size: {
+        type: INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+        comment: '文件大小'
+      },
+      url: {
+        type: STRING,
+        allowNull: true,
+        defaultValue: '',
+        comment: '文件url'
+      },
+      isdir: {
+        type: INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+        comment: '是否为文件夹',
+      },
+      created_time: DATE,
+      updated_time: DATE,
+    });
+  },
+
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable('file');
+  }
+};
+
+- 定义数据模型: app/model/file.js
+
+'use strict'
+module.exports = (app) => {
+  const { STRING, INTEGER, DATE, ENUM, TEXT } = app.Sequelize
+
+  const File = app.model.define('file', {
+    id: {
+      type: INTEGER(20),
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    name: {
+      type: STRING(100),
+      allowNull: false,
+      defaultValue: '',
+      comment: '文件名',
+    },
+    ext: {
+      type: STRING(50),
+      allowNull: true,
+      defaultValue: '',
+      comment: '文件扩展名',
+    },
+    md: {
+      type: STRING,
+      allowNull: true,
+      defaultValue: '',
+      comment: '文件MD5',
+    },
+    file_id: {
+      type: INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+      comment: '父级id',
+    },
+    user_id: {
+      type: INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+      comment: '用户id',
+      references: {
+        model: 'user',
+        key: 'id',
+      },
+      onDelete: 'cascade',
+      onUpdate: 'restrict', // 更新时操作
+    },
+    size: {
+      type: INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+      comment: '文件大小',
+    },
+    url: {
+      type: STRING,
+      allowNull: true,
+      defaultValue: '',
+      comment: '文件url',
+    },
+    isdir: {
+      type: INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+      comment: '是否为文件夹',
+    },
+    created_time: DATE,
+    updated_time: DATE,
+  })
+
+  // 删除后
+  File.afterBulkDestroy(async (data, option) => {
+    console.log('删除后', data.where)
+
+    let files = await app.model.File.findAll({
+      where: {
+        file_id: data.where.id,
+        user_id: data.where.user_id,
+        isdir: 1,
+      },
+    })
+
+    let ids = files.map((item) => item.id)
+
+    if (ids.length > 0) {
+      app.model.File.destroy({
+        where: {
+          id: ids,
+          user_id: data.where.user_id,
+        },
+      })
+    }
+  })
+
+  return File
+}
+
+- 控制器：app/controller/file.js
+
+'use strict'
+const Controller = require('egg').Controller
+const fs = require('fs')
+const path = require('path')
+class FileController extends Controller {
+  // 上传
+  async upload() {
+    const { ctx, app, service } = this
+    const currentUser = ctx.authUser
+    console.log(ctx.request.files)
+    if (!ctx.request.files) {
+      return ctx.apiFail('请先选择上传文件')
+    }
+    ctx.validate({
+      file_id: {
+        required: true,
+        type: 'int',
+        defValue: 0,
+        desc: '目录id',
+      },
+    })
+    const file_id = ctx.query.file_id
+    console.log(file_id + '&&&&&&&&&')
+    let f
+    // 目录id是否存在
+    if (file_id > 0) {
+      // 目录是否存在,存在就返回目录对象，从而取得目录名字，不存在直接在service就出错返回了
+      await service.file.isDirExist(file_id).then((res) => {
+        console.log(res + '>>>>>>>>>>')
+        f = res
+      })
+    }
+    //取得上传的文件对象
+    const file = ctx.request.files[0]
+    //动态将目录名称作为前缀和文件名拼接
+    const name = f.name + '/' + ctx.genID(10) + path.extname(file.filename)
+    // 判断用户网盘内存是否不足
+    let s = await new Promise((resolve, reject) => {
+      fs.stat(file.filepath, (err, stats) => {
+        resolve((stats.size / 1024).toFixed(1))
+      })
+    })
+    if (currentUser.total_size - currentUser.used_size < s) {
+      return ctx.apiFail('你的可用内存不足')
+    }
+    // 上传到oss
+    let result
+    try {
+      result = await ctx.oss.put(name, file.filepath)
+    } catch (err) {
+      console.log(err)
+    }
+    //得到文件url
+    console.log(result.url)
+    // 写入到数据表
+    if (result) {
+      let addData = {
+        name: file.filename,
+        ext: file.mimeType,
+        md: result.name,
+        file_id,
+        user_id: currentUser.id,
+        size: parseInt(s),
+        isdir: 0,
+        url: result.url,
+      }
+      let res = await app.model.File.create(addData)
+      // 更新用户的网盘内存使用情况
+      currentUser.used_size = currentUser.used_size + parseInt(s)
+      currentUser.save()
+      return ctx.apiSuccess(res)
+    }
+    ctx.apiFail('上传失败')
+  }
+}
+module.exports = FileController
+
+- 服务：app/service/file.js
+
+'use strict'
+
+const Service = require('egg').Service
+
+class FileService extends Service {
+  // 目录是否存在
+  async isDirExist(id) {
+    let f = await this.app.model.File.findOne({
+      where: {
+        id,
+        user_id: this.ctx.authUser.id,
+        isdir: 1,
+      },
+    })
+    if (!f) {
+      return this.ctx.throw(404, '目录不存在')
+    }
+    return f
+  }
+
+  // 文件是否存在
+  async isExist(id) {
+    let f = await this.app.model.File.findOne({
+      where: {
+        id,
+        user_id: this.ctx.authUser.id,
+      },
+    })
+    if (!f) {
+      return this.ctx.throw(404, '文件不存在')
+    }
+    return f
+  }
+}
+
+module.exports = FileService
+
+- 扩展：app/extend/context.js
+
+// 生成唯一id
+genID(length) {
+ return Number(Math.random().toString().substr(3, length) + Date.now()).toString(36);
+}
+
+- 路由：app/router.js
+
+router.post('/upload', controller.file.upload);
+
+- 执行 migrate 进行数据库变更
+
+npx sequelize db:migrate
+
+- 配置 config/config.default.js
+
+  // oss配置
+  config.oss = {
+    client: {
+      accessKeyId: '************',
+      accessKeySecret: '************',
+      bucket: 'my-egg-oss',
+      endpoint: 'oss-cn-hangzhou.aliyuncs.com',
+      timeout: '60s',
+    },
+  }
+
+  // 上传格式和大小限制
+  config.multipart = {
+    // fileSize: '50mb',
+    fileSize: 1048576000,
+    // mode: 'stream',
+    mode: 'file',
+    fileExtensions: [
+      // 允许上传的图片类型
+      '.jpg',
+      '.jpeg',
+      '.png',
+      '.gif',
+      '.bmp',
+      '.wbmp',
+      '.webp',
+      '.tif',
+      '.psd',
+      // 允许上传的文本类型
+      '.svg',
+      '.js',
+      '.jsx',
+      '.json',
+      '.css',
+      '.less',
+      '.html',
+      '.htm',
+      '.xml',
+      '.txt',
+      '.doc',
+      '.docx',
+      '.md',
+      '.pdf',
+      '.xls',
+      '.xlsx',
+      // 允许上传的压缩文件类型
+      '.zip',
+      '.gz',
+      '.tgz',
+      '.gzip',
+      // 允许上传的音视频文件类型
+      '.mp3',
+      '.mp4',
+      '.avi',
+    ],
+  }
+    
+
+- 
+
+演示，一定要看！！
+[![upload.mp4 (15.94MB)](https://gw.alipayobjects.com/mdn/prod_resou/afts/img/A*NNs6TKOR3isAAAAAAAAAAABkARQnAQ)]()
+
+该死的语雀！！！我花了一个多小时在写完丢丢完写然后从Typora写了再粘贴过来，蜗牛般的刷新速度小心翼翼不敢点更新的恐惧中，战战兢兢完成了这一趴&¥#**@（@（¥@（I#
+
+
+
+
+
+------
+
+## 3. 分享相关API
+
+# 16、前后端交互
+
+
+
+
+
+------
+
+# 附录
+
 ## ValParams API 说明
 
-#### 参数验证处理
-
+参数验证处理
 Valparams.setParams(req, params, options);
 
 | Param                       | Type                                               | Description                                                  | Example                                                      |
@@ -1352,187 +2814,3 @@ Valparams.locales(key);
 ##### 设置使用的本地化文件
 
 Valparams.locale(locale); 如： `Valparams.locale('zh-cn')`;
-
-------
-
-现在，我们把参数校验加入用户注册功能
-
-```javascript
-'use strict';
-
-const Controller = require('egg').Controller;
-class UserController extends Controller {
-    // 注册
-    async reg() {
-        const { ctx, app } = this;
-        // 参数验证，用户名至少5个字符，最长20个字符，密码和确认密码必须一致
-        ctx.validate({
-            username: {
-                required: true,
-                type: "string",
-                desc: "用户名",
-                range: {
-                    min: 5,
-                    max: 20
-                },
-            },
-            password: {
-                required: true,
-                type: "string",
-                desc: "密码"
-            },
-            repassword: {
-                required: true,
-                type: "string",
-                desc: "确认密码"
-            }
-        });
-
-        let { username, password, repassword } = ctx.request.body;
-
-        if (password !== repassword) {
-            return ctx.throw(400, '密码和确认密码不相同');
-        }
-
-        // 用户名是否存在
-        if (await app.model.User.findOne({
-            where: {
-                username
-            }
-        })) {
-            ctx.throw(400, '用户名已存在');
-        }
-
-        // 创建用户
-        let user = await app.model.User.create({
-            username,
-            password
-        });
-
-        if (!user) {
-            ctx.throw(400, '注册失败');
-        }
-
-        user = JSON.parse(JSON.stringify(user));
-        delete user.password;
-
-        ctx.apiSuccess(user);
-    }
-}
-
-module.exports = UserController;
-
-
-```
-
-Postman测试，已经生效～
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603290457649-3bb688a6-0273-4d2e-9353-5218268e74e2.png#align=left&display=inline&height=382&margin=%5Bobject%20Object%5D&name=image.png&originHeight=958&originWidth=1896&size=128083&status=done&style=none&width=757)
-
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603290514711-e0ce5950-574a-42c6-9972-5a1cb009391a.png#align=left&display=inline&height=381&margin=%5Bobject%20Object%5D&name=image.png&originHeight=976&originWidth=1948&size=133219&status=done&style=none&width=760)
-
-- crypto数据加密
-
-> nodejs 中的 crypto 模块提供了各种各样加密算法的 API，几类常用算法：
->
-> - 散列(Hash)算法
-> - HMac 算法
-> - 对称加密(AES)与非对称加密解密(RSA)
-> - 签名和验证算法
-
-
-
-crypto 模块目的是提供加密功能，包含对 OpenSSL 的哈希、HMAC、加密、解密、签名、以及验证功能的一整套封装。
-Nodejs用C/C++实现这些算法后，通过cypto这个模块暴露为JavaScript接口，这样用起来方便，运行速度也较直接使用JavaScript快。
-
-我们先安装
-
-```shell
-npm install crypto --save
-
-```
-
-在config.default.js配置，加个很随机的密钥
-
-```javascript
-config.crypto = {
-    secret:  'qhdgw@45ncashdaksh2!#@3nxjdas*_672'
-};
-
-```
-
-使用方法：
-
-```javascript
-// 引入
-const crypto = require('crypto');
-
-// 加密
-async createPassword(password) {
-    const hmac = crypto.createHash("sha256", this.app.config.crypto.secret);
-    hmac.update(password);
-    return hmac.digest("hex");
-}
-
-// 验证密码
-async checkPassword(password, hash_password) {
-    // 先对需要验证的密码进行加密
-    password = await this.createPassword(password);
-    return password === hash_password;
-}
-
-```
-
-现在，来为注册时的密码加密，修改model包中user数据模型的password属性，给它进行hmac加密
-**一定不要忘记头部引入crypto模块**
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603291307631-6cfc2e6c-e37c-4037-8d48-bb4eb5df344f.png#align=left&display=inline&height=510&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1360&originWidth=1934&size=232872&status=done&style=none&width=725)
-
-```javascript
- password: {
-            type: STRING,
-            allowNull: false,
-            defaultValue: '',
-            comment: "密码",
-            set(val) {
-                const hmac = crypto.createHash("sha256", app.config.crypto.secret);
-                hmac.update(val);
-                this.setDataValue('password', hmac.digest("hex"));
-            }
-        },
-
-```
-
-现在在Postman再注册一次，看下数据库的密码字段
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603291481506-689ef845-5222-462b-92ea-d4ed229d0ab3.png#align=left&display=inline&height=337&margin=%5Bobject%20Object%5D&name=image.png&originHeight=966&originWidth=2192&size=149885&status=done&style=none&width=765)
-
-看来密码字段设置得太短了，改大点
-**![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603291843631-ae7e1b5d-3146-4b54-91fc-ba5cd291f774.png#align=left&display=inline&height=381&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1060&originWidth=1716&size=226112&status=done&style=none&width=616)**
-然后**把user表删掉，执行变更，重新生成表**
-
-```shell
-npx sequelize db:migrate
-
-```
-
-再测试，成功
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603291919664-07b4439d-6e6e-4c3b-bf64-c64a734fa2b2.png#align=left&display=inline&height=444&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1318&originWidth=2192&size=209912&status=done&style=none&width=738)
-数据库查看下密码字段，已经成功加密
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603292012349-eef58e9e-f8d1-4401-95f6-5fc6d852a535.png#align=left&display=inline&height=96&margin=%5Bobject%20Object%5D&name=image.png&originHeight=192&originWidth=2266&size=89957&status=done&style=none&width=1133)
-
-今天的成果还是挺可观的
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/228333/1603292139634-36deab67-028e-44fe-bc7f-e3384f9835dd.png#align=left&display=inline&height=602&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1468&originWidth=2598&size=402038&status=done&style=none&width=1066)
-
-
-
-- jwt加密鉴权
-- redis缓存插件和封装
-- 登录功能实现
-- 全局权限验证中间件的实现
-- 退出登录
-
-## 2）文件相关
-
-## 3）分享相关
-
-# 21、前后端交互开发
-
-# 22、多端兼容和打包
