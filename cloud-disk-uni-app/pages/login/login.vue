@@ -16,14 +16,14 @@
 				placeholder="手机号/用户名/邮箱"
 			/>
 			<input
-				type="text"
+				type="password"
 				v-model="form.password"
 				class="uni-input bg-light rounded mb-4"
 				placeholder="请输入密码"
 			/>
 			<input
 				v-if="type === 'reg'"
-				type="text"
+				type="password"
 				v-model="form.repassword"
 				class="uni-input bg-light rounded mb-4"
 				placeholder="请输入确认密码"

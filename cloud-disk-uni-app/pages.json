@@ -46,6 +46,14 @@
             }
             
         }
+        ,{
+            "path" : "pages/save/save",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/shareUrl/shareUrl",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",		

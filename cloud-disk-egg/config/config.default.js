@@ -16,7 +16,7 @@ module.exports = (appInfo) => {
   config.keys = appInfo.name + '_1802343215'
 
   // add your middleware config here
-  config.middleware = []
+  config.middleware = ['errorHandler', 'auth']
 
   config.security = {
     // 关闭 csrf
@@ -30,12 +30,6 @@ module.exports = (appInfo) => {
   config.cors = {
     origin: '*',
     allowMethods: 'GET, PUT, POST, DELETE, PATCH',
-  }
-
-  config.middleware = ['errorHandler', 'auth']
-
-  config.auth = {
-    match: ['/logout', '/upload', '/getSize', '/file', '/share'],
   }
 
   config.sequelize = {
@@ -61,12 +55,7 @@ module.exports = (appInfo) => {
       underscored: true,
     },
   }
-
-  config.valparams = {
-    locale: 'zh-cn',
-    throwError: true,
-  }
-
+  //加入一个随机的密钥
   config.crypto = {
     secret: 'qhdgw@45ncashdaksh2!#@3nxjdas*_672',
   }
@@ -80,11 +69,23 @@ module.exports = (appInfo) => {
       db: 1,
     },
   }
-
+  //jwt配置
   config.jwt = {
     secret: 'qhdgw@45ncashdaksh2!#@3nxjdas*_672',
   }
 
+  // add your user config here
+  const userConfig = {
+    locale: 'zh-cn',
+    throwError: true,
+  }
+
+  //这些端点的请求需要token鉴权
+  config.auth = {
+    match: ['/logout', '/upload', '/getSize', '/file', '/share'],
+  }
+
+  // oss配置
   // oss配置
   config.oss = {
     client: {
@@ -95,6 +96,7 @@ module.exports = (appInfo) => {
       timeout: '60s',
     },
   }
+
   // 上传格式和大小限制
   config.multipart = {
     // fileSize: '50mb',
@@ -139,11 +141,6 @@ module.exports = (appInfo) => {
       '.mp4',
       '.avi',
     ],
-  }
-
-  // add your user config here
-  const userConfig = {
-    // myAppName: 'egg',
   }
 
   return {

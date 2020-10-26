@@ -27,12 +27,12 @@ module.exports = (app) => {
   router.post('/file/delete', controller.file.delete)
   //搜索功能实现
   router.get('/file/search', controller.file.search)
-  // //创建分享
-  // router.post('/share/create', controller.share.create)
-  // //我的分享列表
-  // router.get('/share/list', controller.share.list)
-  // //查看分享
-  // router.get('/share/:sharedurl', controller.share.read)
-  // //保存到自己的网盘
-  // router.post('/share/save_to_self', controller.share.saveToSelf)
+  //创建分享
+  router.post('/share/create', controller.share.create)
+  //我的分享列表
+  router.get('/share/list', controller.share.list)
+  //查看分享
+  router.get('/share/:sharedurl', controller.share.read)
+  //保存到自己的网盘
+  router.post('/share/save_to_self', controller.share.saveToSelf)
 }

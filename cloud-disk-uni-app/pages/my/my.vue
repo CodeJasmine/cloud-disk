@@ -2,7 +2,7 @@
   <view>
     <view class="p-3 flex align-center">
       <image
-        src="/static/1.jpg"
+        :src="user.avatar"
         style="width: 120rpx;height: 120rpx;"
         class="rounded-circle flex-shrink mr-3"
       ></image>
@@ -25,7 +25,7 @@
     <view class="bg-light" style="height: 20rpx;"></view>
     <view class="flex justify-between p-3">
       <text class="text-muted font">设置</text>
-	  <image src="../../static/tabbar/right.png"" style="width: 40rpx;height: 40rpx;"></image>
+	  <image src="../../static/tabbar/right.png" style="width: 40rpx;height: 40rpx;"></image>
     </view>
 	<view class="flex justify-between p-3">   
 		 <text @click="logout">退出登录</text>
