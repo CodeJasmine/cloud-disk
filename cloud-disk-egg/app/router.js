@@ -11,4 +11,5 @@ module.exports = (app) => {
   router.post('/reg', controller.user.reg)
   // 退出登录
   router.post('/logout', controller.user.logout)
+  router.post('/upload', controller.file.upload)
 }

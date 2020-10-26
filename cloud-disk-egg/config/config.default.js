@@ -85,6 +85,62 @@ module.exports = (appInfo) => {
     secret: 'qhdgw@45ncashdaksh2!#@3nxjdas*_672',
   }
 
+  // oss配置
+  config.oss = {
+    client: {
+      accessKeyId: '************',
+      accessKeySecret: '************',
+      bucket: 'my-egg-oss',
+      endpoint: 'oss-cn-hangzhou.aliyuncs.com',
+      timeout: '60s',
+    },
+  }
+  // 上传格式和大小限制
+  config.multipart = {
+    // fileSize: '50mb',
+    fileSize: 1048576000,
+    // mode: 'stream',
+    mode: 'file',
+    fileExtensions: [
+      // 允许上传的图片类型
+      '.jpg',
+      '.jpeg',
+      '.png',
+      '.gif',
+      '.bmp',
+      '.wbmp',
+      '.webp',
+      '.tif',
+      '.psd',
+      // 允许上传的文本类型
+      '.svg',
+      '.js',
+      '.jsx',
+      '.json',
+      '.css',
+      '.less',
+      '.html',
+      '.htm',
+      '.xml',
+      '.txt',
+      '.doc',
+      '.docx',
+      '.md',
+      '.pdf',
+      '.xls',
+      '.xlsx',
+      // 允许上传的压缩文件类型
+      '.zip',
+      '.gz',
+      '.tgz',
+      '.gzip',
+      // 允许上传的音视频文件类型
+      '.mp3',
+      '.mp4',
+      '.avi',
+    ],
+  }
+
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
