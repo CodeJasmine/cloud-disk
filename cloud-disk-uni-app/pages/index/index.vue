@@ -3,7 +3,19 @@
 		<!-- 自定义导航栏 -->
 		<nav-bar>
 			<template v-if="checkCount === 0">
-				<text slot="left" class="font-md ml-3">首页</text>
+				<!-- 插槽再一次发挥逆天作用，进入子目录，左边将变成返回箭头，导航栏变成子目录名称 -->
+				<template slot="left">
+					<view
+						style="width: 60rpx;height: 60rpx;"
+						class="flex align-center justify-center bg-light rounded-circle ml-3"
+						hover-class="bg-hover-light"
+						@tap="backUp"
+						v-if="current" >
+						<text class="iconfont icon-fanhui"></text>
+					</view>
+					<text class="font-md ml-3">{{ current ? current.name : '首页' }}</text>
+				</template>
+				
 				<template slot="right">
 					<view
 						style="width: 60rpx;height: 60rpx;"
@@ -43,6 +55,7 @@
 					type="text"
 					class="bg-light font-md rounded-circle"
 					placeholder="搜索网盘文件"
+					@input="search"
 				/>
 			</view>
 		</view>
@@ -154,54 +167,24 @@ export default {
 	},
 	data() {
 		return {
+			//记录路由
+			dirs: [],
 			// 文件排序弹框
 			sortIndex: 0,
-			sortOptions: [
+			// sortOptions数组记录排序方式，其中的key可以作为查询参数传到后台，去按照这个排序
+		    sortOptions: [
 				{
-					name: '按名称排序'
+					name: '按名称排序',
+					key: 'name'
 				},
 				{
-					name: '按时间排序'
+					name: '按时间排序',
+					key: 'created_time'
 				}
 			],
 			renameValue: '',
 			newdirname: '',
-			list: [
-				{
-					type: 'dir',
-					name: '我的笔记',
-					create_time: '2020-10-21 08:00',
-					checked: false
-				},
-				{
-					type: 'image',
-					name: '风景.jpg',
-					// data: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603469593793&di=fb7568f38b1994828ae0b71adbcbcb39&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F18%2F56%2F14300000958002128488569856508.jpg',
-					data:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2432138309,903609407&fm=26&gp=0.jpg',
-					create_time: '2020-10-21 08:00',
-					checked: false
-				},
-			
-				{
-					type: 'video',
-					name: 'uni-app学习.mp4',
-					data: 'https://codejasmine.oss-cn-hangzhou.aliyuncs.com/wususu/d7844a4efd4dfc7aa6a3d139badabde3.mp4',
-					create_time: '2020-10-23 08:40',
-					checked: false
-				},			
-				{
-					type: 'text',
-					name: '记事本.txt',
-					create_time: '2020-10-21 08:00',
-					checked: false
-				},
-				{
-					type: 'none',
-					name: '压缩包.rar',
-					create_time: '2020-10-21 08:00',
-					checked: false
-				}
-			],
+			list: [],
 			addList:[{
 						icon:"icon-file-b-6",
 						color:"text-success",
@@ -221,16 +204,38 @@ export default {
 					}]
 		};
 	},
-	onLoad: function() {
-		uni.request({
-			url: 'http://localhost:7001/list',
-			method: 'GET',
-			success: res => {
-				console.log(res.data);
-			}
-		});
+	onLoad() {
+		let dirs = uni.getStorageSync('dirs');
+		if (dirs) {
+			this.dirs = JSON.parse(dirs);
+		}
+		// 初始化数据
+		this.getData();
 	},
 	methods: {
+		// 将数据格式转化为我们需要显示的样子，不同的文件类型，是否选中
+		formatList(list) {
+			return list.map(item => {
+				let type = 'none';
+				if (item.isdir === 1) {
+					type = 'dir';
+				} else {
+					type = item.ext.split('/')[0] || 'none';
+				}
+				return {
+					type,
+					checked: false,
+					...item
+				};
+			});
+		},
+		// 每次请求API接口的时候，把最新的file_id和选取的orderby排序方式带
+		 getData() {
+			let orderby = this.sortOptions[this.sortIndex].key;
+			this.$H.get(`/file?file_id=${this.file_id}&orderby=${orderby}`, {token: true}).then(res => {
+				this.list = this.formatList(res.rows);
+			});			
+		},
 		select(e){
 			//接受到子组件传递过来的索引选中状态，将对应的list中的数据更新
 			this.list[e.index].checked = e.value
@@ -245,31 +250,55 @@ export default {
 		handleBottomEvent(item){
 			switch(item.name){
 				case '删除':
-					this.$refs.dialog.open(close =>{
-						//对list进行过滤，留下未被选中的
-						this.list = this.list.filter(item => !item.checked);
-						close();
-						uni.showToast({
-							title: '删除成功',
-							icon: 'none'
+					this.$refs.delete.open(close => {
+						uni.showLoading({
+							title:'删除中.......',
+							mask:false
 						})
+						let ids =this.checkList.map(item=>item.id).join(',');
+						this.$H.post('/file/delete',{ids},{token:true}).then(res=>{
+							this.getData();
+								uni.showToast({
+									title:'删除成功',
+									icon:'none'
+							});
+								uni.hideLoading();
+							})
+							.catch(err=>{
+								uni.hideLoading();
+							})
+						close();
 					});
 					break;
-					case '重命名':
-					//重命名只能对单个文件，所以this.checkList[0],也就是唯一元素
+				case '重命名':
+						//重命名只能对单个文件进行，所以取this.checkList[0]，也就是选中的唯一元素
 						this.renameValue = this.checkList[0].name;
 						this.$refs.rename.open(close => {
-							if(this.renameValue == ''){
+							if (this.renameValue == '') {
 								return uni.showToast({
 									title: '文件名称不能为空',
 									icon: 'none'
 								});
 							}
-							//更新该元素的name值,实时看到效果
-							this.checkList[0].name = this.renameValue;
+							this.$H.post('/file/rename',{
+								id:this.checkList[0].id,
+								file_id:this.file_id,
+								name:this.renameValue
+							},{
+								token:true
+							}).then(res=>{
+								this.checkList[0].name=this.renameValue;
+								uni.showToast({
+									title:'重命名成功',
+									icon:'none'
+								});
+							});
 							close();
 						});
-					break;				
+				break;
+				case '下载':
+					this.download();
+					break;
 				default:
 				break;				
 			}
@@ -281,30 +310,45 @@ export default {
 		handleAddEvent(item){
 			this.$refs.add.close();
 			switch(item.name){
-				case '新建文件夹':
-					this.$refs.newdir.open(close => {
-						if(this.newdirname == ''){
-							return uni.showToast({
-								title:'文件夹名称不能为空',
-								icon:'none'
-							});
-						}
-						//模拟请求服务器这里先增加到list数组
-						this.list.push({
-							type:'dir',
-							name:this.newdirname,
-							create_time: '2020-10-22 17:00',
-							checked: false
+				case '上传图片':
+				//选择照片，限制为9张
+				uni.chooseImage({
+					count:9,
+					success:res=>{
+						//选择照片成功，就循环异步调用上传接口
+						res.tempFiles.forEach(item=>{
+							this.upload(item,'image');
 						});
+					}
+				});
+				break;
+				case '新建文件夹':
+				this.$refs.newdir.open(close => {
+					if(this.newdirname == ''){
+						return uni.showToast({
+							title:'文件夹名称不能为空',
+							icon:'none'
+						});
+					}
+					//请求新增文件夹接口
+					this.$H.post('/file/createdir',{
+						file_id:this.file_id,
+						name:this.newdirname
+					},{
+						token:true
+					}).then(res=>{
+						this.genData();
 						uni.showToast({
 							title:'新建文件夹成功',
 							icon:'none'
 						});
-						close();
 					});
-					break;
-				default:
-					break;
+					close();
+					this.newdirname = '';
+				});
+				break;
+			default:
+				break;
 			}
 		},
 		//列表点击事件处理
@@ -316,30 +360,167 @@ export default {
 					return item.type === 'image'
 				})
 				uni.previewImage({
-					current:item.data,
-					urls:images.map(item=>item.data)
+					current:item.url,
+					urls:images.map(item=>item.url)
 				})
-					break;
+				break;
 				case 'video':
 				uni.navigateTo({
-					url: '../video/video?url='+item.data + '&title=' + item.name,
+					url: '../video/video?url='+item.url + '&title=' + item.name,
 				});
 					break;
 				default:
+				//文件夹的点击事件
+				//把当前元素push到路由数组中去，然后用这个目录的id，
+				//去请求它的层级里的数据，同时存到本地存储中
+					this.dirs.push({
+						id: item.id,
+						name: item.name
+					});
+					this.getData();
+					uni.setStorage({
+						key: 'dirs',
+						ata: JSON.stringify(this.dirs)
+					});
 					break;
 			}
 		},
 		// 切换排序
 		changeSort(index) {
+			//根据最新选的排序方式去请求接口数据
 			this.sortIndex = index;
+			this.getData();
 			this.$refs.sort.close();
 		},
 		openSortDialog() {
 			this.$refs.sort.open();
+		},
+		// 返回上一个目录
+		backUp() {
+			this.dirs.pop();
+			this.getData();
+			uni.setStorage({
+				key: 'dirs',
+				data: JSON.stringify(this.dirs)
+			});
+		},
+		//搜索功能，关键字为空就走请求所有数据接口，否则就将文本框实时输入的内容作为关键词进行搜索
+		search(e){
+			if(e.detail.value== ''){
+				return this.getData();
+			}
+			this.$H
+				get('/file/search?keyword='+e.detail.value,{
+					token:true
+				})
+				.then(res=>{
+					this.list = this.formatList(res.rows);
+				});
+		},
+		//生成唯一的key
+		getID(length){
+			return Number(
+			Math.random().toString().substr(3,length)+Date.now()).toString(36);
+		},
+		//上传
+		upload(file,type){
+			//上传文件的类型
+			let t =type;
+			//上传文件的key,用来区分每一个文件
+			const key =this.getID(8);
+			//构建上传文件的对象，文件名，类型，大小，唯一的Key,进度，状态，创建时间
+			let obj={
+				name:file.name,
+				type:t,
+				size:file.size,
+				key,
+				progress:0,
+				status:true,
+				created_time:new Date().getTime()
+			};
+			//创建上传任务，分发给Vuex的Acitions，异步上传调度，主要是实现上传进度的调度
+			this.$store.dispatch('createUploadJob',obj);
+			//上传，查询参数为当前位置所在目录的id,body为参数为文件  路径
+			this.$H
+			.upload(
+			'/upload?file_id='+this.file_id,
+			{
+				filePath:file.path,
+				},
+			p=>{
+				//更新上传任务进度
+				this.$store.dispatch('updateUploadJob',{
+					status:true,
+					progress:p,
+					key
+				});
+			}
+			).then(res=>{
+				//上传成功，请求数据更新列表
+				this.getData();
+			});
+		},
+		download(){
+			this.checkList.forEach(item=>{
+				if(item.isdir===0){
+					const key=this.getID(8);
+					let obj={
+						name:item.name,
+						type:item.type,
+						size:item.size,
+						key,
+						progress:0,
+						status:true,
+						created_time:new Date().getTime()
+					};
+					//创建下载任务
+					this.$store.dispatch('createDownLoadJob',obj);
+					let url=item.url;
+					let d=uni.downloadFile({
+						url,
+						success:res=>{
+							if(res.statusCode===200){
+								console.log('下载成功',res);
+								uni.saveFile({
+									tempFilePath:item.tempFilePath
+								});
+							}
+						}
+					});
+					d.onProgressUpdate(res=>{
+						this.$store.dispatch('updateDownLoadJob',{
+							progress:res.progress,
+							status:true,
+							key
+						});
+					});
+				}
+			});
+			uni.showToast({
+				title:'已加入下载任务',
+				icon:'none'
+			});
+			this.handleCheckAll(false);
 		}
 	},
 	//计算属性
 	computed:{
+		// 实时根据当前dirs数组的变化，file_id计算属性取得应该传到后端的file_id参数（就是当前目录），
+		// current计算属性则用来切换导航栏样式
+		file_id() {
+			let l = this.dirs.length;
+			if (l === 0) {
+				return 0;
+			}
+			return this.dirs[l - 1].id;
+		},
+		current() {
+			let l = this.dirs.length;
+			if (l === 0) {
+				return false;
+			}
+			return this.dirs[l - 1];
+		},
 		//选中列表
 		checkList(){
 			return this.list.filter(item => item.checked);

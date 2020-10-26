@@ -76,8 +76,8 @@ module.exports = (appInfo) => {
     client: {
       port: 6379, // Redis port
       host: '127.0.0.1', // Redis host
-      password: 'auth',
-      db: 0,
+      password: '',
+      db: 1,
     },
   }
 
@@ -88,9 +88,9 @@ module.exports = (appInfo) => {
   // oss配置
   config.oss = {
     client: {
-      accessKeyId: '************',
-      accessKeySecret: '************',
-      bucket: 'my-egg-oss',
+      accessKeyId: 'LTAI4GJ2tLtD8Nfd117WUhBk',
+      accessKeySecret: 'zDJG93zzqTtfR4Z0s6NqicB1jlzbPp',
+      bucket: 'codejasmine',
       endpoint: 'oss-cn-hangzhou.aliyuncs.com',
       timeout: '60s',
     },
