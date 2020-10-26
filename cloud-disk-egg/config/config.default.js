@@ -32,7 +32,11 @@ module.exports = (appInfo) => {
     allowMethods: 'GET, PUT, POST, DELETE, PATCH',
   }
 
-  config.middleware = ['errorHandler']
+  config.middleware = ['errorHandler', 'auth']
+
+  config.auth = {
+    match: ['/logout', '/upload', '/getSize', '/file', '/share'],
+  }
 
   config.sequelize = {
     dialect: 'mysql',
@@ -68,14 +72,14 @@ module.exports = (appInfo) => {
   }
 
   // redis存储
-  // config.redis = {
-  //   client: {
-  //     port: 6379, // Redis port
-  //     host: '127.0.0.1', // Redis host
-  //     password: 'auth',
-  //     db: 0,
-  //   },
-  // }
+  config.redis = {
+    client: {
+      port: 6379, // Redis port
+      host: '127.0.0.1', // Redis host
+      password: 'auth',
+      db: 0,
+    },
+  }
 
   config.jwt = {
     secret: 'qhdgw@45ncashdaksh2!#@3nxjdas*_672',
